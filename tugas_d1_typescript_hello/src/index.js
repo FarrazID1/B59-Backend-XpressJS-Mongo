@@ -1,5 +1,5 @@
-'use strict';
+"use strict";
 const greet = (name) => {
-  return `Semangat Pagi, ${name}!`;
+    return `Bismillaah, ${name}!`;
 };
-console.log(greet('Dunia'));
+console.log(greet('Hello World!'));

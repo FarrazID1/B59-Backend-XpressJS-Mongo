@@ -1,5 +1,5 @@
 const greet = (name: string): string => {
-  return `Hello, ${name}!`;
+  return `Bismillaah, ${name}!`;
 };
 
-console.log(greet('World'));
+console.log(greet('Hello World!'));
