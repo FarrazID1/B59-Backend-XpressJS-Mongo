@@ -1,0 +1,12 @@
+{
+  "name": "frz_test1_nodejs_intro",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "farraz",
+  "license": "ISC",
+  "description": ""
+}
