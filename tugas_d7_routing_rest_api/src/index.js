@@ -49,6 +49,7 @@ let products = [
   { id: 3, name: 'Speaker', category: 'Elektronik' },
 ];
 
+//--- SOAL 1 ---
 //TODO: 6.1) define route (GET) => get all categories
 app.get('/api/categories', (req, res) => {
   //res.send('GET => all categories: ', categories);
@@ -58,6 +59,7 @@ app.get('/api/categories', (req, res) => {
   console.log('GET => all categories: ', categories);
 });
 
+//--- SOAL 2 ---
 //TODO: 6.2) define route (GET) => get category by id
 app.get('/api/categories/:id', (req, res) => {
   const categoryId = parseInt(req.params.id);
@@ -72,6 +74,7 @@ app.get('/api/categories/:id', (req, res) => {
   console.log('GET => response status:', res.statusCode); //* 200 OK
 });
 
+//--- SOAL 3 ---
 //TODO: 6.3) define route (POST) => create new category
 app.post('/api/categories', (req, res) => {
   //define new category -- from req.body (in Postman)
@@ -102,6 +105,7 @@ app.post('/api/categories', (req, res) => {
   console.log('POST => response status:', res.statusCode); //* 201 Created
 });
 
+//--- SOAL 4 ---
 //TODO: 6.4) define route (PUT) => update category by id
 app.put('/api/categories/:id', (req, res) => {
   const categoryId = parseInt(req.params.id);
@@ -120,6 +124,7 @@ app.put('/api/categories/:id', (req, res) => {
   console.log('PUT => response status:', res.statusCode); //* 200 OK
 });
 
+//--- SOAL 5 ---
 //TODO: 6.5) define route (DELETE) => delete category by id
 app.delete('/api/categories/:id', (req, res) => {
   //define selected category.id -- to be deleted
@@ -138,69 +143,78 @@ app.delete('/api/categories/:id', (req, res) => {
 });
 
 //TODO: 7.1) define route (GET) => get all products
-app.get('/api/products', (req, res) => {
-  res.json(products);
-  console.log('GET => response status:', res.statusCode);
-});
-
-//TODO: 7.2) define route (GET) => get product by name
-app.get('/api/products/:name', (req, res) => {
-  const name = req.params.name;
-  const product = products.find((p) => p.name === name);
-
-  //if product not found
-  if (!product) {
-    res.status(404).json({ message: 'Product not found' });
-    // res.status(404).send('Product not found');
-  } else {
-    res.json(product);
-  }
-  console.log('GET => response status:', res.statusCode);
-});
-
-//TODO: 7.3) define route (GET) => get product by name - use query string
 // app.get('/api/products', (req, res) => {
-//   const searchName = req.query.name?.toLowerCase();
-//   const filteredProducts = products.filter((p) =>
-//     p.name.toLowerCase().includes(searchName)
-//   );
-//   res.json(filteredProducts);
-
-//   if (filteredProducts.length > 0) {
-//     res.status(200).json(filteredProducts);
-//   } else {
-//     res.status(404).json({ message: 'Product not found with this name' });
-//   }
-// });
-
-//TODO: 7.4) define route (GET) => get product by category & name
-app.get('/api/products/:category/:name', (req, res) => {
-  const category = req.params.category;
-  const name = req.params.name;
-  const product = products.find(
-    (p) => p.category === category && p.name === name
-  );
-  if (!product) {
-    res.status(404).json({ message: 'Product not found' });
-  } else {
-    res.json(product);
-  }
-  console.log('GET => response status:', res.statusCode);
-});
-
-//TODO: 7.5) define route (GET) => get query string by category and name
-// app.get('/api/products/', (req, res) => {
-//   const nameX = req.query.name;
-//   const categoryX = req.query.category;
-
-//   const filteredProducts = products
-//     .filter((p) => p.category === categoryX)
-//     .filter((p) => p.name.includes(nameX));
-
-//   res.json(filteredProducts);
-
+//   res.json(products);
 //   console.log('GET => response status:', res.statusCode);
 // });
+
+//TODO: 7.2) define route (GET) => get product by name - use query parameter
+// app.get('/api/products/:name', (req, res) => {
+//   const name = req.params.name;
+//   const product = products.find((p) => p.name === name);
+
+//   //if product not found
+//   if (!product) {
+//     res.status(404).json({ message: 'Product not found' });
+//     // res.status(404).send('Product not found');
+//   } else {
+//     res.json(product);
+//   }
+//   console.log('GET => response status:', res.statusCode);
+// });
+
+//--- SOAL 6 ---
+//TODO: 7.3) define route (GET) => get product by name - use query string
+//* --EX.url: http://localhost:3005/api/products?name=meja
+app.get('/api/products', (req, res) => {
+  const searchName = req.query.name?.toLowerCase();
+  const filteredProducts = products.filter((p) =>
+    p.name.toLowerCase().includes(searchName)
+  );
+
+  if (filteredProducts.length > 0) {
+    res.status(200).json(filteredProducts);
+  } else {
+    res.status(404).json({ message: 'Product not found with this name' });
+  }
+  console.log('GET => response status:', res.statusCode);
+});
+
+//TODO: 7.2) define route (GET) => get product by category & name - use query parameter
+// app.get('/api/products/:category/:name', (req, res) => {
+//   const category = req.params.category;
+//   const name = req.params.name;
+//   const product = products.find(
+//     (p) => p.category === category && p.name === name
+//   );
+//   if (!product) {
+//     res.status(404).json({ message: 'Product not found' });
+//   } else {
+//     res.json(product);
+//   }
+//   console.log('GET => response status:', res.statusCode);
+// });
+
+//--- SOAL 7 ---
+//TODO: 7.2) define route (GET) => get product by category & name - use query string
+//* --EX.url: http://localhost:3005/api/products?category=Elektronik&name=Speaker
+app.get('/api/products/', (req, res) => {
+  const searchCategory = req.query.category?.toLowerCase();
+  const searchName = req.query.name?.toLowerCase();
+  const filteredProducts = products.filter(
+    (produk) =>
+      produk.category.toLowerCase() === searchCategory &&
+      produk.name.toLowerCase().includes(searchName)
+  );
+
+  if (filteredProducts.length > 0) {
+    res.status(200).json({ results: filteredProducts });
+  } else {
+    res.status(404).json({ message: 'Search result - not found' });
+  }
+
+  console.log('GET => response status:', res.statusCode);
+});
 
 //TODO: 8) listen to the port - display message when server is running
 app.listen(port, () => {
