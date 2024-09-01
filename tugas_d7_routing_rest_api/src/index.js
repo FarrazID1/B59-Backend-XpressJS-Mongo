@@ -196,21 +196,29 @@ app.get('/api/products', (req, res) => {
 // });
 
 //--- SOAL 7 ---
-//TODO: 7.2) define route (GET) => get product by category & name - use query string
-//* --EX.url: http://localhost:3005/api/products?category=Elektronik&name=Speaker
-app.get('/api/products/', (req, res) => {
-  const searchCategory = req.query.category?.toLowerCase();
-  const searchName = req.query.name?.toLowerCase();
+//TODO: 7.2) define route (GET) => get product by category (use parameter) & name (use query string)
+//* --EX.url: http://localhost:3005/api/products/Elektronik?name=speaker  -> it works
+//* --EX.url: http://localhost:3005/api/products/Elektronik?name=lap  -> it also works
+//* --EX.url: http://localhost:3005/api/products/Elektronik?name=  -> it also works - show all products with same category
+
+app.get('/api/products/:category', (req, res) => {
+  const paramCategory = req.params.category;
+  const queryName = req.query.name?.toLowerCase();
+
   const filteredProducts = products.filter(
-    (produk) =>
-      produk.category.toLowerCase() === searchCategory &&
-      produk.name.toLowerCase().includes(searchName)
+    (product) =>
+      product.category === paramCategory &&
+      (queryName ? product.name.toLowerCase().includes(queryName) : true)
   );
 
   if (filteredProducts.length > 0) {
-    res.status(200).json({ results: filteredProducts });
+    // res.status(200).json(filteredProducts);
+    res.status(200).json({
+      message: 'Search result - product found',
+      results: filteredProducts,
+    });
   } else {
-    res.status(404).json({ message: 'Search result - not found' });
+    res.status(404).json({ message: 'No products found in that category' });
   }
 
   console.log('GET => response status:', res.statusCode);
