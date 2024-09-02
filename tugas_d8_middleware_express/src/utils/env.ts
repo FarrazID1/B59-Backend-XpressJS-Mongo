@@ -1,4 +1,4 @@
-import 'dotenv/config';
+// import 'dotenv/config';
 
 export const CLOUDINARY_API_KEY: string = process.env.CLOUDINARY_API_KEY || '';
 
