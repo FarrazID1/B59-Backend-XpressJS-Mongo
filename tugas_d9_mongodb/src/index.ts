@@ -1,10 +1,10 @@
 import express from 'express';
 import db from './utils/database';
-import routes from './routes';
+import routes from './routes/api';
 import bodyParser from 'body-parser';
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3007;
 
 db();
 
