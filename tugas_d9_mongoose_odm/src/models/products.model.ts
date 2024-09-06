@@ -25,7 +25,7 @@ const ProductsSchema = new Schema(
       required: true,
       min: [1, 'Quantity can not be less than 1'],
     },
-    category: {
+    categoryId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Categories',
     },
