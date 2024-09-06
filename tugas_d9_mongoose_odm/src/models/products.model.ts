@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 
@@ -23,11 +23,11 @@ const ProductsSchema = new Schema(
     qty: {
       type: Number,
       required: true,
-      min: [1, "Quantity can not be less than 1"],
+      min: [1, 'Quantity can not be less than 1'],
     },
     category: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Categories",
+      ref: 'Categories',
     },
   },
   {
@@ -35,6 +35,6 @@ const ProductsSchema = new Schema(
   }
 );
 
-const ProductsModel = mongoose.model("Products", ProductsSchema);
+const ProductsModel = mongoose.model('Products', ProductsSchema);
 
 export default ProductsModel;

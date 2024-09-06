@@ -1,4 +1,4 @@
-import multer from "multer";
+import multer from 'multer';
 
 const storage = multer.memoryStorage();
 
@@ -9,8 +9,8 @@ const upload = multer({
   },
 });
 
-export const single = upload.single("file");
-export const multiple = upload.array("files", 10);
+export const single = upload.single('file');
+export const multiple = upload.array('files', 10);
 
 export default {
   single,
