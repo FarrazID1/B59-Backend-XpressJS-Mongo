@@ -4,7 +4,8 @@ import routes from './routes/api';
 import bodyParser from 'body-parser';
 
 const app = express();
-const PORT = process.env.PORT || 3007;
+// const PORT = process.env.PORT || 3008;
+const PORT = 3000;
 
 connectDB();
 

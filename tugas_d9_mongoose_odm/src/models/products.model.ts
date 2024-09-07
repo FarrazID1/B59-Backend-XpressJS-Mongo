@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 
+//TODO: define schema for products model - it will be used by mongoose
+//? --schema will be used to define document structure (req.body) - in JSON format
 const Schema = mongoose.Schema;
 
 const ProductsSchema = new Schema(
@@ -23,11 +25,11 @@ const ProductsSchema = new Schema(
     qty: {
       type: Number,
       required: true,
-      min: [1, 'Quantity can not be less than 1'],
     },
     categoryId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Categories',
+      ref: 'CategoryId',
+      required: true,
     },
   },
   {

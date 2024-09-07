@@ -8,7 +8,7 @@ const connect = async () => {
       dbName: 'cluster-farraz-course1',
       connectTimeoutMS: 10000,
     });
-    console.log('Database connected');
+    console.log('Database (MongoDB) connected');
   } catch (error) {
     console.log(error);
     console.log('Error connecting to database');
